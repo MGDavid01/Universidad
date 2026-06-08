@@ -1,0 +1,9 @@
+Jun 05 2026 21:06:18
+{"Number":8192,"Message":"explode(): Passing null to parameter #2 ($string) of type string is deprecated","File":"\/home\/Exodus\/Documents\/Uni\/8vo\/WebProfesional\/Parcial1\/SitioWeb\/tecnixvw\/wp-content\/plugins\/All-in-One-migration-6.7-version-master\/functions.php","Line":338}
+
+Jun 05 2026 21:09:14
+{"Number":8192,"Message":"Creation of dynamic property Ai1wm_Database_Mysqli::$old_replace_raw_values is deprecated","File":"\/home\/Exodus\/Documents\/Uni\/8vo\/WebProfesional\/Parcial1\/SitioWeb\/tecnixvw\/wp-content\/plugins\/All-in-One-migration-6.7-version-master\/lib\/vendor\/servmask\/database\/class-ai1wm-database.php","Line":300}
+
+Jun 05 2026 21:09:14
+{"Number":8192,"Message":"Creation of dynamic property Ai1wm_Database_Mysqli::$new_replace_raw_values is deprecated","File":"\/home\/Exodus\/Documents\/Uni\/8vo\/WebProfesional\/Parcial1\/SitioWeb\/tecnixvw\/wp-content\/plugins\/All-in-One-migration-6.7-version-master\/lib\/vendor\/servmask\/database\/class-ai1wm-database.php","Line":321}
+
