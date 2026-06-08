@@ -18,6 +18,12 @@ WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/cache/
 WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/upgrade/
 WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/ai1wm-backups/
 WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/debug.log
+WebProfesional/Parcial1/tecnixSite/wp-content/uploads/
+WebProfesional/Parcial1/tecnixSite/wp-content/cache/
+WebProfesional/Parcial1/tecnixSite/wp-content/upgrade/
+WebProfesional/Parcial1/tecnixSite/wp-content/ai1wm-backups/
+WebProfesional/Parcial1/tecnixSite/wp-content/debug.log
+*.wpress
 
 # --- MariaDB binarios (preferir dump .sql) ---
 WebProfesional/Parcial1/SitioWeb/tecnixSiteDB
