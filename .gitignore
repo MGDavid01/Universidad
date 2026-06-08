@@ -13,14 +13,14 @@ db.sqlite3
 *.log
 
 # --- WordPress (generado / pesado) ---
-WebProfesional/Parcial1/SitioWeb/tecnixvw/wp-content/uploads/
-WebProfesional/Parcial1/SitioWeb/tecnixvw/wp-content/cache/
-WebProfesional/Parcial1/SitioWeb/tecnixvw/wp-content/upgrade/
-WebProfesional/Parcial1/SitioWeb/tecnixvw/wp-content/ai1wm-backups/
-WebProfesional/Parcial1/SitioWeb/tecnixvw/wp-content/debug.log
+WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/uploads/
+WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/cache/
+WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/upgrade/
+WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/ai1wm-backups/
+WebProfesional/Parcial1/SitioWeb/tecnixSite/wp-content/debug.log
 
 # --- MariaDB binarios (preferir dump .sql) ---
-WebProfesional/Parcial1/SitioWeb/tecnixview
+WebProfesional/Parcial1/SitioWeb/tecnixSiteDB
 
 # --- OS / IDE ---
 .DS_Store
