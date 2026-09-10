@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: SuperSecret2024!
+      MYSQL_DATABASE: empresa_db
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_pass123
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    volumes:
+      - empresa_db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ptu_contrasena"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  empresa_db_data:
