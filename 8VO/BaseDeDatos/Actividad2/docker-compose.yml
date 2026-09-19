@@ -1,3 +1,4 @@
+# Entrega histórica. Para trabajo nuevo: Universidad/docker-compose.yml (uni-mysql :3306, base crm_db).
 services:
   db:
     image: mysql:8.0

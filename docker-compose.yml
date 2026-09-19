@@ -1,0 +1,54 @@
+# Stack compartido de Universidad: un contenedor por motor, no uno por ejercicio.
+# Uso (desde esta carpeta):
+#   docker compose up -d
+#   docker compose up -d postgres
+#   podman compose up -d
+#
+# Crea una base por práctica dentro del mismo servidor, por ejemplo:
+#   CREATE DATABASE lab5;
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: uni-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: universidad
+      MYSQL_DATABASE: universidad
+      MYSQL_USER: universidad
+      MYSQL_PASSWORD: universidad
+    ports:
+      - "3306:3306"
+    volumes:
+      - uni_mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-puniversidad"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: uni-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: universidad
+      POSTGRES_PASSWORD: universidad
+      POSTGRES_DB: universidad
+    ports:
+      - "5432:5432"
+    volumes:
+      - uni_postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U universidad -d universidad"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  uni_mysql_data:
+  uni_postgres_data:

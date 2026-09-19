@@ -1,3 +1,5 @@
+# No uses este archivo para trabajo nuevo.
+# Stack compartido: Universidad/docker-compose.yml  →  docker compose up -d postgres
 services:
   # Servicio de Base de Datos
   db:

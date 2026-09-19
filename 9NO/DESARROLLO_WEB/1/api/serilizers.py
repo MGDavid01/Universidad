@@ -1,15 +1,16 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 # Models
-from api import models
+from api.models import bank as Bank
 
 
 # Bank
 # Create
 
-class bankSerializerCreate(serializers.ModelSerializer):
+class CreateBankSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.bank
+        model = Bank
         fields = [
             'name',
             'address',
@@ -19,9 +20,9 @@ class bankSerializerCreate(serializers.ModelSerializer):
 ## Retrive
 # List
 
-class bankSerializerList(serializers.ModelSerializer):
+class ListBankSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.bank
+        model = Bank
         fields = [
             'id',
             'name',
@@ -30,16 +31,16 @@ class bankSerializerList(serializers.ModelSerializer):
 
 # Detail
 
-class bankSerializerDetail(serializers.ModelSerializer):
+class DetailBankSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.bank
+        model = Bank
         fields = '__all__'
 
 # Update
 
-class bankSerializerUpdate(serializers.ModelSerializer):
+class UpdateBankSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.bank
+        model = Bank
         fields = [
             'name',
             'address',
@@ -48,63 +49,116 @@ class bankSerializerUpdate(serializers.ModelSerializer):
 
 # Delete
 
-class bankSerializerDelete(serializers.ModelSerializer):
+class DeleteBankSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.bank
+        model = Bank
         fields = '__all__'
 
 
-# Account
+# User
 # Create
 
-class accountSerializerCreate(serializers.ModelSerializer):
+class CreateUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        write_only=True,
+        min_length=8,
+        style={
+            "input_type": "password"
+            }
+        )
+    password_confirmation = serializers.CharField(
+        write_only=True,
+        style={
+            "input_type": "password"
+            }
+        )
+
     class Meta:
-        model = models.Account
+        model = User
         fields = [
-            'name',
-            'bank',
-            'user',
-            'currency',
-            'balance',
-            'status',
+            'id',
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'password',
+            'password_confirmation',
         ]
+        read_only_fields = ['id',]
+
+    def validate_username(self, value):
+        if User.objects.filter(username__iexact=value).exists():
+            raise serializers.ValidationError("Este usuario ya existe.")
+        return value
+
+    def validate_email(self, value):
+        if value and User.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError("Este email ya tiene una cuenta vinculada.")
+        return value
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password_confirmation']:
+            raise serializers.ValidationError({
+                "password_confirmation": "Las contraseñas no coinciden."
+            })
+        return attrs
+
+    def create(self, validated_data):
+        validated_data.pop('password_confirmation')
+        password = validated_data.pop('password')
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
 
 ## Retrive
 # List
 
-class accountSerializerList(serializers.ModelSerializer):
+class ListUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Account
+        model = User
         fields = [
             'id',
-            'name',
-            'status',
+            'username',
+            'email',
+            'is_active',
         ]
 
 # Detail
 
-class accountSerializerDetail(serializers.ModelSerializer):
+class DetailUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Account
-        fields = '__all__'
+        model = User
+        fields = [
+            'id',
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'is_active',
+            'date_joined',
+        ]
 
 # Update
 
-class accountSerializerUpdate(serializers.ModelSerializer):
+class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Account
+        model = User
         fields = [
-            'name',
-            'bank',
-            'user',
-            'currency',
-            'balance',
-            'status',
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'is_active',
         ]
 
 # Delete
 
-class accountSerializerDelete(serializers.ModelSerializer):
+class DeleteUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Account
-        fields = '__all__'
+        model = User
+        fields = [
+            'id',
+            'username',
+            'email',
+        ]

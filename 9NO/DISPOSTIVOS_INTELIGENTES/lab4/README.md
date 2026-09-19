@@ -25,7 +25,7 @@ API REST de usuarios con FastAPI, SQLModel y base de datos (SQLite local o Postg
 - Expone `GET /` (bienvenida) y `GET /health` (salud del servicio).
 
 ### `compose.yml`
-Levanta el servicio `db` (PostgreSQL 15 Alpine) con usuario/DB `mike`, puerto `5432` y volumen persistente `postgres_data`.
+Quedó de cuando este lab tenía su propio Postgres. El stack compartido está en la raíz de `Universidad` (`docker compose up -d postgres`): contenedor `uni-postgres`, base `mikedb` o `lab4`.
 
 ### `.env`
 Define la URL de conexión. Ejemplo comentado para Postgres; si no hay valor, `db/database.py` usa SQLite (`sqlite:///./mikedb.db`).
@@ -39,8 +39,9 @@ Documento PostScript (no forma parte del código de la API).
 ## Cómo arrancar (resumen)
 
 ```bash
-# Opcional: PostgreSQL
-podman compose -f compose.yml up -d
+# Opcional: PostgreSQL compartido (desde la raíz de Universidad)
+docker compose up -d postgres
+# o: podman compose up -d postgres
 
 # API (desde el entorno Dev)
 uvicorn main:app --reload

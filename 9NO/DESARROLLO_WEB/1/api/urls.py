@@ -5,11 +5,11 @@ from api.view import (
     BankDetailAPIView,
     BankUpdateApiView,
     BankDeleteApiView,
-    AccountCreateApiView,
-    AccountListApiView,
-    AccountDetailApiView,
-    AccountUpdateApiView,
-    AccountDeleteApiView,
+    UserCreateApiView,
+    UserListApiView,
+    UserDetailApiView,
+    UserUpdateApiView,
+    UserDeleteApiView,
 )
 
 urlpatterns = [
@@ -20,10 +20,10 @@ urlpatterns = [
     path('bank/update/<int:pk>/', BankUpdateApiView.as_view(), name='bank-update'),
     path('bank/delete/<int:pk>/', BankDeleteApiView.as_view(), name='bank-delete'),
 
-    # Account
-    path('account/create/', AccountCreateApiView.as_view(), name='account-create'),
-    path('account/list/', AccountListApiView.as_view(), name='account-list'),
-    path('account/detail/<int:pk>/', AccountDetailApiView.as_view(), name='account-detail'),
-    path('account/update/<int:pk>/', AccountUpdateApiView.as_view(), name='account-update'),
-    path('account/delete/<int:pk>/', AccountDeleteApiView.as_view(), name='account-delete'),
+    # User
+    path('user/create/', UserCreateApiView.as_view(), name='user-create'),
+    path('user/list/', UserListApiView.as_view(), name='user-list'),
+    path('user/detail/<int:pk>/', UserDetailApiView.as_view(), name='user-detail'),
+    path('user/update/<int:pk>/', UserUpdateApiView.as_view(), name='user-update'),
+    path('user/delete/<int:pk>/', UserDeleteApiView.as_view(), name='user-delete'),
 ]
