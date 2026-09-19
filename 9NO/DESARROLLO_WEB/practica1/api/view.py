@@ -15,7 +15,7 @@ from api import serilizers as serializers
 class UserCreateApiView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = serializers.CreateUserSerializer
-    
+
 
 ## Retrive
 # List

@@ -99,17 +99,19 @@ class CreateUserSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         if attrs['password'] != attrs['password_confirmation']:
             raise serializers.ValidationError({
-                "password_confirmation": "Las contraseñas no coinciden."
+                'password_confirmation': 'Las contraseñas no coinciden.'
             })
         return attrs
 
     def create(self, validated_data):
         validated_data.pop('password_confirmation')
-        password = validated_data.pop('password')
-        user = User(**validated_data)
-        user.set_password(password)
-        user.save()
-        return user
+        return User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data.get('email', ''),
+            password = validated_data['password'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+        )
 
 ## Retrive
 # List

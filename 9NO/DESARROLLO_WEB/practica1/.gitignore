@@ -1,8 +1,7 @@
-# Entorno virtual (creado en la raíz del proyecto)
-Include/
-Lib/
-Scripts/
-pyvenv.cfg
+# Entorno virtual
+.venv/
+venv/
+env/
 
 # Python
 __pycache__/
@@ -25,9 +24,6 @@ db.sqlite3-journal
 
 # Entorno
 .env
-.venv/
-venv/
-env/
 
 # IDE
 .idea/

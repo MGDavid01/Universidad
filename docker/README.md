@@ -57,6 +57,6 @@ mysql+pymysql://universidad:universidad@127.0.0.1:3306/crm_db
 
 **MySQL:** `escuela_db`, `crm_db`, `uni_db`, `empresa_db` (más usuarios `admin` / `dev_user` para prácticas viejas de 8VO).
 
-**PostgreSQL:** `lab4`, `lab5`, `mikedb` (usuario `mike`), `admin_bank` (usuario `user_admin_bank`).
+**PostgreSQL:** `lab4`, `lab5`, `mikedb` (usuario `mike`), `admin_bank` (usuario `user_admin_bank`), `practica1`.
 
 Los `compose.yml` que ya están dentro de entregas antiguas se dejan como evidencia; para trabajo nuevo usa solo este stack.

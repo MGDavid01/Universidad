@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class bank(models.Model):
     name = models.CharField(max_length=32, default="Generic Bank Name")
     address = models.CharField(max_length=64, default="Generic Bank Address")
