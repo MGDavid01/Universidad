@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Nueva solicitud · TecnixConnect{% endblock %}
+{% block content %}
+<div class="panel" style="max-width:640px">
+  <h1 class="section-title">Nueva solicitud de soporte</h1>
+  {% if preferred_provider %}
+  <div class="notice">
+    Preferencia sugerida: <strong>{{ preferred_provider.organization.name }}</strong>.
+    La solicitud quedará abierta para cotizaciones de proveedores compatibles.
+  </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <div class="form-actions">
+      <button class="btn" type="submit">Publicar solicitud</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

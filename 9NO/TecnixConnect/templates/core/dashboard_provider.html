@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Panel proveedor · TecnixConnect{% endblock %}
+{% block content %}
+<div class="row" style="justify-content:space-between;margin-bottom:1rem">
+  <div>
+    <h1 class="section-title">Panel · {{ nav_org.name }}</h1>
+    <p class="meta">Oportunidades y trabajos asignados</p>
+  </div>
+  <a class="btn btn-secondary" href="{% url 'provider_profile' %}">Editar perfil</a>
+</div>
+
+{% if profile and not profile.specialties.exists %}
+<div class="notice">Configura tus especialidades en el perfil para recibir oportunidades relevantes.</div>
+{% endif %}
+
+<div class="split">
+  <section class="panel">
+    <h2 class="section-title">Oportunidades</h2>
+    {% if opportunities %}
+      {% for r in opportunities %}
+      <div class="quote-item">
+        <strong><a href="{% url 'request_detail' r.pk %}">{{ r.title }}</a></strong>
+        <div class="meta">{{ r.category.name }} · {{ r.location }} · {{ r.get_urgency_display }}</div>
+        <div class="meta">{{ r.client.name }}</div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="empty">No hay solicitudes abiertas compatibles por ahora.</p>
+    {% endif %}
+  </section>
+
+  <section class="stack">
+    <div class="panel">
+      <h2 class="section-title">Trabajos activos</h2>
+      {% if my_jobs %}
+        {% for r in my_jobs %}
+        <div class="quote-item">
+          <strong><a href="{% url 'request_detail' r.pk %}">{{ r.title }}</a></strong>
+          <div class="meta"><span class="badge badge-warn">{{ r.get_status_display }}</span></div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="empty">Sin trabajos asignados.</p>
+      {% endif %}
+    </div>
+    <div class="panel">
+      <h2 class="section-title">Mis cotizaciones recientes</h2>
+      {% if my_quotes %}
+        {% for q in my_quotes %}
+        <div class="meta" style="margin-bottom:0.45rem">
+          <a href="{% url 'request_detail' q.service_request_id %}">{{ q.service_request.title }}</a>
+          · ${{ q.amount }} · {{ q.get_status_display }}
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="empty">Aún no has cotizado.</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}
