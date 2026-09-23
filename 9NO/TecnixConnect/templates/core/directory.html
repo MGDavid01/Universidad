@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Directorio · TecnixConnect{% endblock %}
+{% block content %}
+<h1 class="section-title">Directorio de proveedores</h1>
+<p class="meta" style="margin-bottom:1rem">Perfiles de empresa. El CTA es solicitar cotización, no comprar.</p>
+
+<form class="panel row" method="get" style="margin-bottom:1rem">
+  <div style="flex:1;min-width:180px">
+    <label for="categoria">Categoría</label>
+    <select name="categoria" id="categoria" class="form-control">
+      <option value="">Todas</option>
+      {% for c in categories %}
+        <option value="{{ c.slug }}" {% if selected_category == c.slug %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div style="flex:1;min-width:180px">
+    <label for="zona">Zona</label>
+    <input class="form-control" type="text" name="zona" id="zona" value="{{ selected_zone }}" placeholder="Ej. Centro">
+  </div>
+  <div style="align-self:end">
+    <button class="btn" type="submit">Filtrar</button>
+  </div>
+</form>
+
+{% if providers %}
+<div class="grid">
+  {% for p in providers %}
+  <article class="card">
+    <h3>{{ p.organization.name }}</h3>
+    <div class="meta">{{ p.coverage_zone|default:"—" }}</div>
+    <div class="stars">★ {{ p.average_rating }} · {{ p.review_count }} reseñas</div>
+    <p class="meta">{{ p.description|truncatechars:120|default:"Sin descripción" }}</p>
+    <div class="tags">
+      {% for s in p.specialties.all %}<span class="tag">{{ s.name }}</span>{% endfor %}
+    </div>
+    {% if user.is_authenticated and user.is_client %}
+      <a class="btn btn-sm" href="{% url 'request_create' %}?proveedor={{ p.organization_id }}{% if p.specialties.first %}&categoria={{ p.specialties.first.id }}{% endif %}">Solicitar cotización</a>
+    {% elif not user.is_authenticated %}
+      <a class="btn btn-sm btn-secondary" href="{% url 'register' %}">Regístrate para solicitar</a>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">No hay proveedores con esos filtros.</p>
+{% endif %}
+{% endblock %}

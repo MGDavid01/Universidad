@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecnixConnect — Prototipo de presentación</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --border: #2d3a4f;
+      --text: #e8eef6;
+      --muted: #8b9bb4;
+      --accent: #3d9cf0;
+      --accent-dim: #2563a8;
+      --ok: #3ecf8e;
+      --warn: #f0a53d;
+      --bad: #ef5f5f;
+      --radius: 10px;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.45;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; }
+    .brand span { color: var(--accent); }
+
+    .mode-switch {
+      display: flex;
+      gap: 0.35rem;
+      background: var(--bg);
+      padding: 0.25rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .mode-switch button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .mode-switch button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+    .banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .banner strong { color: var(--text); }
+    .banner.bad { border-color: #5a3030; background: #1f1518; }
+    .banner.ok { border-color: #1f4a38; background: #122018; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card .thumb {
+      height: 120px;
+      background: linear-gradient(135deg, var(--surface2), #1a3048);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card .body { padding: 0.9rem 1rem 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+    .card h3 { font-size: 1rem; }
+    .card .meta { color: var(--muted); font-size: 0.82rem; }
+    .card .price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ok);
+      margin-top: 0.25rem;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.25rem; }
+    .tag {
+      font-size: 0.72rem;
+      background: var(--surface2);
+      color: var(--muted);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .stars { color: var(--warn); font-size: 0.85rem; }
+
+    button.cta, .cta {
+      margin-top: auto;
+      border: 0;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.55rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      width: 100%;
+      text-align: center;
+    }
+    button.cta:hover { background: var(--accent-dim); }
+    button.cta.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    button.cta.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hidden { display: none !important; }
+
+    /* Flujo B2B */
+    .layout-b2b {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 800px) {
+      .layout-b2b { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+    }
+
+    .panel h2 { font-size: 1.05rem; margin-bottom: 0.85rem; }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+      margin-top: 0.7rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.55rem 0.7rem;
+      font: inherit;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+
+    .proposal {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      margin-bottom: 0.7rem;
+      background: var(--bg);
+    }
+    .proposal.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .proposal header-row, .proposal .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: flex-start;
+      margin-bottom: 0.35rem;
+    }
+    .proposal .amount { font-weight: 700; color: var(--ok); white-space: nowrap; }
+
+    .steps {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .step {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      background: var(--surface2);
+      color: var(--muted);
+    }
+    .step.on { background: var(--accent-dim); color: #fff; }
+
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      max-width: 320px;
+      font-size: 0.88rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      z-index: 20;
+    }
+    .toast.show { opacity: 1; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding: 2rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Tecnix<span>Connect</span></div>
+    <div class="mode-switch" role="tablist">
+      <button type="button" class="active" data-mode="marketplace" id="btnMarket">A) Tipo Marketplace</button>
+      <button type="button" data-mode="b2b" id="btnB2b">B) Flujo B2B (recomendado)</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Modo A: Marketplace -->
+    <section id="viewMarket">
+      <div class="banner bad">
+        <strong>Enfoque A — “Productos”:</strong>
+        Las pymes se muestran como anuncios comprables. Sirve para intuición rápida, pero
+        reduce un servicio B2B a un artículo con precio fijo y botón “Comprar”.
+      </div>
+      <div class="grid" id="marketGrid"></div>
+    </section>
+
+    <!-- Modo B: B2B -->
+    <section id="viewB2b" class="hidden">
+      <div class="banner ok">
+        <strong>Enfoque B — Solicitud → propuestas:</strong>
+        El cliente describe el problema; la plataforma sugiere proveedores; elige una cotización.
+        El proveedor es un <em>perfil de empresa</em>, no un producto.
+      </div>
+
+      <div class="steps" id="b2bSteps">
+        <span class="step on" data-s="1">1. Solicitud</span>
+        <span class="step" data-s="2">2. Propuestas</span>
+        <span class="step" data-s="3">3. Selección</span>
+      </div>
+
+      <div class="layout-b2b">
+        <div class="panel" id="formPanel">
+          <h2>Solicitar soporte técnico</h2>
+          <label for="cat">Categoría</label>
+          <select id="cat">
+            <option value="redes">Redes / Wi‑Fi</option>
+            <option value="hardware">Hardware / PCs</option>
+            <option value="seguridad">Ciberseguridad básica</option>
+            <option value="software">Software / sistemas</option>
+          </select>
+
+          <label for="urgency">Urgencia</label>
+          <select id="urgency">
+            <option value="normal">Normal (24–48 h)</option>
+            <option value="alta">Alta (hoy)</option>
+            <option value="critica">Crítica (ahora)</option>
+          </select>
+
+          <label for="zone">Zona</label>
+          <select id="zone">
+            <option>Centro</option>
+            <option>Norte</option>
+            <option>Sur</option>
+          </select>
+
+          <label for="desc">Descripción</label>
+          <textarea id="desc" placeholder="Ej. La red de la oficina cayó; 12 equipos sin acceso a internet."></textarea>
+
+          <button type="button" class="cta" id="btnSend" style="margin-top:1rem">Enviar solicitud</button>
+        </div>
+
+        <div class="panel" id="proposalsPanel">
+          <h2>Propuestas compatibles</h2>
+          <p class="meta" id="proposalsHint" style="color:var(--muted);font-size:0.88rem;margin-bottom:0.75rem">
+            Completa y envía la solicitud para ver cotizaciones simuladas.
+          </p>
+          <div id="proposalsList"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:1.25rem">
+        <h2>Explorar proveedores (apoyo, no carrito)</h2>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:0.85rem">
+          Directorio de perfiles. El CTA es “Solicitar cotización”, no “Comprar”.
+        </p>
+        <div class="grid" id="dirGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <footer>Prototipo rápido HTML+JS · TecnixConnect · Solo UI, sin backend</footer>
+
+  <script>
+    const providers = [
+      {
+        id: "p1",
+        name: "NetFix PyME",
+        emoji: "📡",
+        cats: ["redes", "seguridad"],
+        zone: "Centro",
+        rating: 4.8,
+        reviews: 42,
+        blurb: "Redes, Wi‑Fi empresarial y cableado.",
+        fakePrice: "$800 – $2,500",
+        quote: { amount: 1850, days: "mismo día", note: "Diagnóstico + reconfiguración AP" },
+      },
+      {
+        id: "p2",
+        name: "PC Doctor Oficina",
+        emoji: "💻",
+        cats: ["hardware", "software"],
+        zone: "Norte",
+        rating: 4.5,
+        reviews: 28,
+        blurb: "Mantenimiento de equipos y soporte en sitio.",
+        fakePrice: "$450 / visita",
+        quote: { amount: 950, days: "24 h", note: "Visita + 2 hrs de mano de obra" },
+      },
+      {
+        id: "p3",
+        name: "SecureDesk",
+        emoji: "🔐",
+        cats: ["seguridad", "software"],
+        zone: "Sur",
+        rating: 4.9,
+        reviews: 61,
+        blurb: "Hardening básico, backups y antivirus empresarial.",
+        fakePrice: "Desde $1,200",
+        quote: { amount: 2200, days: "48 h", note: "Auditoría ligera + plan de remediación" },
+      },
+      {
+        id: "p4",
+        name: "Cable & Connect",
+        emoji: "🔌",
+        cats: ["redes", "hardware"],
+        zone: "Centro",
+        rating: 4.2,
+        reviews: 19,
+        blurb: "Instalación de red y racks para oficinas.",
+        fakePrice: "$1,500 – $8,000",
+        quote: { amount: 3100, days: "3 días", note: "Incluye materiales básicos" },
+      },
+    ];
+
+    const marketGrid = document.getElementById("marketGrid");
+    const dirGrid = document.getElementById("dirGrid");
+    const toast = document.getElementById("toast");
+
+    function stars(n) {
+      const full = Math.round(n);
+      return "★".repeat(full) + "☆".repeat(5 - full) + ` ${n}`;
+    }
+
+    function toastMsg(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove("show"), 2800);
+    }
+
+    /* —— Vista Marketplace (duda) —— */
+    marketGrid.innerHTML = providers.map((p) => `
+      <article class="card">
+        <div class="thumb">${p.emoji}</div>
+        <div class="body">
+          <h3>${p.name}</h3>
+          <div class="meta">${p.zone} · ${p.blurb}</div>
+          <div class="stars">${stars(p.rating)} · ${p.reviews} ventas</div>
+          <div class="price">${p.fakePrice}</div>
+          <button type="button" class="cta" data-buy="${p.id}">🛒 Comprar ahora</button>
+        </div>
+      </article>
+    `).join("");
+
+    marketGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-buy]");
+      if (!btn) return;
+      const p = providers.find((x) => x.id === btn.dataset.buy);
+      toastMsg(`Marketplace: “compraste” ${p.name}. ¿Pero qué servicio exacto? ¿Alcance? ¿Urgencia? El modelo se queda corto.`);
+    });
+
+    /* —— Directorio B2B —— */
+    dirGrid.innerHTML = providers.map((p) => `
+      <article class="card">
+        <div class="thumb">${p.emoji}</div>
+        <div class="body">
+          <h3>${p.name}</h3>
+          <div class="meta">${p.zone} · ${p.blurb}</div>
+          <div class="stars">${stars(p.rating)} · ${p.reviews} reseñas</div>
+          <div class="tags">${p.cats.map((c) => `<span class="tag">${c}</span>`).join("")}</div>
+          <button type="button" class="cta secondary" data-quote="${p.id}" style="margin-top:0.75rem">Solicitar cotización</button>
+        </div>
+      </article>
+    `).join("");
+
+    dirGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-quote]");
+      if (!btn) return;
+      const p = providers.find((x) => x.id === btn.dataset.quote);
+      document.getElementById("cat").value = p.cats[0];
+      document.getElementById("desc").value = `Me interesa cotizar con ${p.name}.`;
+      document.getElementById("formPanel").scrollIntoView({ behavior: "smooth" });
+      toastMsg(`Se preseleccionó ${p.name}. Completa la solicitud (no hay carrito).`);
+    });
+
+    /* —— Flujo solicitud —— */
+    let selectedId = null;
+
+    document.getElementById("btnSend").addEventListener("click", () => {
+      const cat = document.getElementById("cat").value;
+      const zone = document.getElementById("zone").value;
+      const desc = document.getElementById("desc").value.trim();
+      if (!desc) {
+        toastMsg("Describe el problema para generar propuestas.");
+        return;
+      }
+
+      const matches = providers.filter((p) => p.cats.includes(cat));
+      const list = matches.length ? matches : providers.slice(0, 2);
+
+      document.getElementById("proposalsHint").textContent =
+        `${list.length} propuestas para “${cat}” · zona ${zone}`;
+
+      selectedId = null;
+      document.getElementById("proposalsList").innerHTML = list.map((p) => `
+        <div class="proposal" data-id="${p.id}">
+          <div class="top">
+            <div>
+              <strong>${p.emoji} ${p.name}</strong>
+              <div class="meta" style="color:var(--muted);font-size:0.8rem">${stars(p.rating)} · ${p.zone}</div>
+            </div>
+            <div class="amount">$${p.quote.amount.toLocaleString("es-MX")}</div>
+          </div>
+          <div style="font-size:0.88rem;color:var(--muted);margin:0.35rem 0 0.65rem">
+            ${p.quote.note} · Entrega: ${p.quote.days}
+          </div>
+          <button type="button" class="cta" data-accept="${p.id}">Aceptar propuesta</button>
+        </div>
+      `).join("");
+
+      setStep(2);
+      toastMsg("Solicitud enviada (simulado). Compara propuestas.");
+    });
+
+    document.getElementById("proposalsList").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-accept]");
+      if (!btn) return;
+      selectedId = btn.dataset.accept;
+      document.querySelectorAll(".proposal").forEach((el) => {
+        el.classList.toggle("selected", el.dataset.id === selectedId);
+      });
+      const p = providers.find((x) => x.id === selectedId);
+      setStep(3);
+      toastMsg(`Seleccionaste ${p.name}. Siguiente: seguimiento / calificación (MVP).`);
+    });
+
+    function setStep(n) {
+      document.querySelectorAll("#b2bSteps .step").forEach((el) => {
+        el.classList.toggle("on", Number(el.dataset.s) <= n);
+      });
+    }
+
+    /* —— Switch de modos —— */
+    const viewMarket = document.getElementById("viewMarket");
+    const viewB2b = document.getElementById("viewB2b");
+    const btnMarket = document.getElementById("btnMarket");
+    const btnB2b = document.getElementById("btnB2b");
+
+    function setMode(mode) {
+      const isMarket = mode === "marketplace";
+      viewMarket.classList.toggle("hidden", !isMarket);
+      viewB2b.classList.toggle("hidden", isMarket);
+      btnMarket.classList.toggle("active", isMarket);
+      btnB2b.classList.toggle("active", !isMarket);
+    }
+
+    btnMarket.addEventListener("click", () => setMode("marketplace"));
+    btnB2b.addEventListener("click", () => setMode("b2b"));
+  </script>
+</body>
+</html>

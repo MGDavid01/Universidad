@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tecnixconnect}
+      POSTGRES_USER: ${POSTGRES_USER:-tecnix}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tecnix}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tecnix} -d ${POSTGRES_DB:-tecnixconnect}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: .
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app:Z
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

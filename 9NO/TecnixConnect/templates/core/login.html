@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Entrar · TecnixConnect{% endblock %}
+{% block content %}
+<div class="panel" style="max-width:420px;margin:0 auto">
+  <h1 class="section-title">Iniciar sesión</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <div class="form-actions">
+      <button class="btn" type="submit">Entrar</button>
+      <a href="{% url 'register' %}">Crear cuenta</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
