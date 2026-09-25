@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 #Importacion de archivos previos
 from db.database import create_db_and_tables
-from api.v1.userApi import *
+from api.v1.user import *
 from core.cors import setup_cors
 
 

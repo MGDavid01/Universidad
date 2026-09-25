@@ -6,7 +6,7 @@ from typing import List
 #achivos creados previamente
 from db.database import get_session
 from models.user_model import User
-from schemas.user import UserCreate, UserUpdate, UserResponse
+from schemas.user_schema import UserCreate, UserUpdate, UserResponse
 
 
 

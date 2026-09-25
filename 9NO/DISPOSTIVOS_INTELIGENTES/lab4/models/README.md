@@ -16,4 +16,4 @@ Modelo `User` → tabla `users`.
 | `is_active` | `bool`, por defecto `True` |
 | `created_at` | Fecha/hora de creación (`datetime.utcnow`) |
 
-Los endpoints de `api/v1/userApi.py` leen y escriben sobre esta clase.
+Los endpoints de `api/v1/user.py` leen y escriben sobre esta clase.

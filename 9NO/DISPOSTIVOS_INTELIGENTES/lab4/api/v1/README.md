@@ -4,7 +4,7 @@ Routers montados bajo el prefijo `/api/v1/...` desde `main.py`.
 
 ## Archivos
 
-### `userApi.py`
+### `user.py`
 Router de usuarios (`APIRouter`). Se registra en `main.py` como `/api/v1/users`.
 
 | Método | Ruta relativa | Función |
