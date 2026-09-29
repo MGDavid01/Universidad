@@ -1,16 +1,52 @@
 # api/v1/user.py
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session, select
 from typing import List
+from datetime import timedelta
 
 #achivos creados previamente
 from db.database import get_session
 from models.user_model import User
 from schemas.user_schema import UserCreate, UserUpdate, UserResponse
-
+from schemas.token_schema import Token, TokenData
+from core.security import verify_password, create_access_token, get_password_hash
+from core.config import settings
+from api.v1.dependencies import get_current_user
 
 
 router = APIRouter()
+
+@router.post("/token", response_model=Token)
+# async def login_for_access_token(
+#     form_data: OAuth2PasswordRequestForm = Depends(),
+#     session: Session = Depends(get_session)
+# ):
+#     """
+#     Obtiene un token de acceso JWT validando el usuario y la contraseña.
+#     Requiere 'python-multipart' instalado para procesar el formulario.
+#     """
+#     # 1. Buscar el usuario en la base de datos por su nombre de usuario
+#     statement = select(Usuario).where(Usuario.username == form_data.username)
+#     user = session.exec(statement).first()
+    
+#     # 2. Validar que el usuario exista y que la contraseña coincida con el hash
+#     if not user or not verify_password(form_data.password, user.hashed_password):
+#         raise HTTPException(
+#             status_code=status.HTTP_401_UNAUTHORIZED,
+#             detail="Credenciales inválidas",
+#             headers={"WWW-Authenticate": "Bearer"},
+#         )
+    
+#     # 3. Generar el token JWT
+#     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+#     access_token = create_access_token(
+#         data={"sub": user.username}, 
+#         expires_delta=access_token_expires
+#     )
+    
+#     # 4. Retornar el token en el formato estándar OAuth2
+#     return {"access_token": access_token, "token_type": "bearer"}
 
 # === CREAR usuario ===
 @router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
