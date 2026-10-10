@@ -28,6 +28,7 @@ docker compose up -d postgres
 | --- | --- | --- | --- | --- | --- |
 | MySQL 8 | `uni-mysql` | 3306 | `universidad` | `universidad` | `universidad` |
 | PostgreSQL 16 | `uni-postgres` | 5432 | `universidad` | `universidad` | `universidad` |
+| MinIO (S3) | `uni-minio` | 9000 (API), 9001 (consola) | `admin` | `passwordseguro123` | — |
 
 Los scripts en `docker/*/init` solo se ejecutan la **primera** vez que se crea el volumen. Si cambias el init y ya existía el volumen, hay que recrearlo (`docker compose down -v`) o crear la base a mano.
 
@@ -57,6 +58,6 @@ mysql+pymysql://universidad:universidad@127.0.0.1:3306/crm_db
 
 **MySQL:** `escuela_db`, `crm_db`, `uni_db`, `empresa_db` (más usuarios `admin` / `dev_user` para prácticas viejas de 8VO).
 
-**PostgreSQL:** `lab4`, `lab5`, `mikedb` (usuario `mike`), `admin_bank` (usuario `user_admin_bank`), `practica1`.
+**PostgreSQL:** `lab4`, `lab5`, `mikedb` (usuario `mike`), `admin_bank` (usuario `user_admin_bank`), `practica1`, `lab7`.
 
 Los `compose.yml` que ya están dentro de entregas antiguas se dejan como evidencia; para trabajo nuevo usa solo este stack.

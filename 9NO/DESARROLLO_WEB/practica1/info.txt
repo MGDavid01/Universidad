@@ -1,0 +1,82 @@
+======================================================
+CONFIGURACIÓN DEL ENTORNO DE DESARROLLO
+======================================================
+
+1. CREAR Y PREPARAR LA CARPETA DEL PROYECTO
+Creamos el directorio de trabajo y nos posicionamos en él.
+------------------------------------------------------
+mkdir proyecto          # Crea una nueva carpeta llamada 'proyecto'
+cd proyecto             # Entra a la carpeta recién creada
+# git clone https://github.com/AlexaPm20/Web.git    #Clona tu repositorio aquí si ya está en Git
+
+
+2. CREAR Y ACTIVAR EL ENTORNO VIRTUAL
+Aislamos las dependencias de Python para este proyecto.
+------------------------------------------------------
+# Linux
+python3 -m venv venv     # Crea el entorno virtual llamado 'venv'
+source venv/bin/activate # Activa el entorno virtual
+
+# En Windows 
+python -m venv venv      # Crea el entorno virtual llamado 'venv'
+.\venv\Scripts\Activate  # Activa el entorno virtual
+*(Sabrás que está activo cuando veas '(venv)' al inicio de tu terminal)*
+
+
+3. INSTALAR LAS DEPENDENCIAS
+Instalamos las librerías necesarias del proyecto dentro del entorno virtual.
+------------------------------------------------------
+pip install --upgrade pip       # Actualiza el gestor de paquetes pip a su última versión
+pip install -r requirements.txt # Instala todas las dependencias listadas en el archivo de requerimientos
+
+
+4. CONFIGURAR LA CLAVE SECRETA DE DJANGO
+Cada persona debe generar y usar su propia clave. Estos comandos se ejecutan desde la
+carpeta del proyecto que contiene manage.py y .env.example. esto generara una copia pero con el nombre de .env muy necesaria 
+------------------------------------------------------
+# Linux / macOS
+cp .env.example .env
+
+# Windows PowerShell
+Copy-Item .env.example .env
+
+# Genera una clave nueva usando el entorno virtual activo con el siguiente comando:
+
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+# Copia el resultado en .env, después de DJANGO_SECRET_KEY=
+# Ejemplo: DJANGO_SECRET_KEY=pega_aqui_tu_clave_generada
+
+
+
+5. LEVANTAR LOS SERVICIOS CON DOCKER COMPOSE
+Arrancamos los contenedores necesarios 
+------------------------------------------------------
+docker compose up -d    # Inicia los servicios definidos en el docker-compose.yml en segundo plano (-d)
+
+
+6. EJECUTAR MIGRACIONES Y ARRANCAR LA APLICACIÓN
+Aplicamos las migraciones a la base de datos y ponemos en marcha el servidor de Django.
+------------------------------------------------------
+python manage.py makemigrations # Crea nuevos archivos de migración si modificaste los modelos
+python manage.py migrate        # Aplica las migraciones pendientes a la base de datos
+
+cd demo 
+python manage.py runserver      # Inicia el servidor de desarrollo local de Django
+
+7. CREAR EL SUPERUSUARIO DE DJANGO
+Para poder entrar al panel administrativo de Django y gestionar usuarios, grupos y contenido.
+------------------------------------------------------
+python manage.py createsuperuser
+
+# Se te pedirá:
+# - Username
+# - Email (opcional)
+# - Password
+
+# IMPORTANTE: la contraseña no se muestra al escribirla, pero sí se guarda correctamente.
+# Luego puedes iniciar sesión en: http://127.0.0.1:8000/admin/
+
+# Si quieres crear el superusuario con valores específicos:
+# python manage.py createsuperuser --username admin --email admin@ejemplo.com
+# Luego escribe la contraseña cuando te la pida.

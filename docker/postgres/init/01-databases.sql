@@ -3,6 +3,7 @@ CREATE DATABASE lab5;
 CREATE DATABASE mikedb;
 CREATE DATABASE admin_bank;
 CREATE DATABASE practica1;
+CREATE DATABASE lab7;
 
 CREATE USER mike WITH PASSWORD 'super_secret_password';
 ALTER DATABASE mikedb OWNER TO mike;
@@ -14,3 +15,4 @@ ALTER DATABASE admin_bank OWNER TO user_admin_bank;
 GRANT ALL PRIVILEGES ON DATABASE lab5 TO universidad;
 GRANT ALL PRIVILEGES ON DATABASE universidad TO universidad;
 GRANT ALL PRIVILEGES ON DATABASE practica1 TO universidad;
+GRANT ALL PRIVILEGES ON DATABASE lab7 TO universidad;

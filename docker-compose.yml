@@ -49,6 +49,22 @@ services:
       retries: 10
       start_period: 20s
 
+  minio:
+    image: chainguard/minio:latest
+    container_name: uni-minio
+    restart: unless-stopped
+    user: "65532:65532"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: passwordseguro123
+    ports:
+      - "9000:9000"   # API S3
+      - "9001:9001"   # Consola web
+    volumes:
+      - uni_minio_data:/data
+    command: server /data --console-address ":9001"
+
 volumes:
   uni_mysql_data:
   uni_postgres_data:
+  uni_minio_data:
