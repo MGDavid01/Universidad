@@ -1,6 +1,6 @@
 # models/user_model.py
 from sqlmodel import SQLModel, Field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 
@@ -23,7 +23,7 @@ class User(SQLModel, table=True):
     email: str = Field(index=True, unique=True)
     hashed_password: str = Field(min_length=8) #Ojo con esto, en producción deberías hashear la contraseña con bcrypt, proxima clase
     is_active: bool = Field(default=True)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     
     class Config:
         # Configuración opcional para la tabla
