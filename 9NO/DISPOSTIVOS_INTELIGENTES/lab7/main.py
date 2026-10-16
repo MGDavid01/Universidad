@@ -6,7 +6,6 @@ from fastapi import FastAPI
 from db.database import create_db_and_tables
 from api.v1.user_api import *
 from core.cors import setup_cors
-from api.v1.user_api import router as user_router
 
 
 
@@ -44,5 +43,3 @@ def root():
 def health_check():
     return {"status": "healthy"}
     
-
-app.include_router(user_router, prefix="/api/v1/users", tags=["Users"])
