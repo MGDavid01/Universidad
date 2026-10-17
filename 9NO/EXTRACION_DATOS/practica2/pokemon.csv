@@ -1,0 +1,151 @@
+N.º,Nombre,Tipo1,Tipo2,Altura,Peso,Legendario
+1,Bulbasaur,Planta,Veneno,0.7,6.9,0
+2,Ivysaur,Planta,Veneno,1,13,0
+3,Venusaur,Planta,Veneno,2,100,0
+4,Charmander,Fuego,,0.6,8.5,0
+5,Charmeleon,Fuego,,1.1,19,0
+6,Charizard,Fuego,Volador,1.7,90.5 ,0 
+7,Squirtle,Agua,,0.5,9,0 
+8,Wartortle,Agua,,1,22.5,0 
+9,Blastoise,Agua,,1.6,85.5,0 
+10,Caterpie,Bicho,,0.3,2.9,0 
+11,Metapod,Bicho,,0.7,9.9,0 
+12,Butterfree,Bicho,Volador,1.1,32,0 
+13,Weedle,Bicho,Veneno,0.3,3.2,0 
+14,Kakuna,Bicho,Veneno,0.6,10,0 
+15 Beedrill, Bicho, Veneno, 1, 29.5, 0
+16, Pidgey, Normal, Volador, 0.3, 1.8, 0
+17, Pidgeotto, Normal, Volador, 1.1, 30, 0
+18, Pidgeot, Normal, Volador, 1.5, 39.5, 0
+19, Rattata, Normal, 0.3, 3.5, 0
+20, Raticate, Normal, 0.7, 18.5, 0
+21, Spearow, Normal, Volador, 0.3, 2, 0
+22, Fearow ,Normal,Volador,1.2,38,0
+23,Ekans,Veneno,,2,6.9,0
+24,Arbok,Veneno,,3.5,65,0
+25,Pikachu,Eléctrico,,0.4,6,0
+26,Raichu,Eléctrico,,0.8,30,0
+27,Sandshrew,Tierra,,0.6,12,0
+28,Sandslash,Tierra,,1,29.5,0
+29,Nidoran♀,Veneno,,0.4,7,0
+30,Nidorina,Veneno n,,0.8,20,0
+31,Nidoqueen,Veneno,Tierra,1.3,60,0
+32,Nidoran♂,Veneno,,0.5,9,0
+33,Nidorino,Veneno,,0.9,19.5,0
+34,Nidoking,Veneno,Tierra,1.4,62,0
+35,Clefairy,Hada,,0.6,7.5,0
+36,Clefable,Hada,,1.3,40,0
+37,Vulpix,Fuego,,0.6,9.9,0
+38,Ninetales ,Fuego,,1.1,19.9,0
+39,Jigglypuff,Normal,Hada,0.5,5.5,0
+40,Wigglytuff,Normal,Hada,1,12,0
+41,Zubat,Veneno,Volador,0.8,7.5,0
+42,Golbat,Veneno,Volador,1.6,55,0
+43,Oddish,Planta,Veneno,0.5,5.4,0
+44,Gloom,Planta,Veneno,0.8,8.6,0
+45,Vileplume,Planta, Veneno,1.2,18.6,0
+46,Paras,Bicho,Planta,0.3,5.4,0
+47,Parasect,Bicho,Planta,1,29.5,0
+48,Venonat,Bicho,Veneno,1,30,0
+49,Venomoth,Bicho,Veneno,1.5,12.5,0
+50,Diglett,Tierra,,0.2,0.8,0
+51,Dugtrio,Tierra,,0.7,33.3,0
+52,Meowth,Normal,,0.4,4.2,0
+53,Persia n,Normal,,1,32,0
+54,Psyduck,Agua,,0.8,19.6,0
+55,Golduck,Agua,,1.7,76.6,0
+56,Mankey,Lucha,,0.5,28,0
+57,Primeape,Lucha,,1,32,0
+58,Growlithe,Fuego,,0.7,19,0
+59,Arcanine,Fuego,,1.9,155,0
+60,Poliwag,Agua,,0.6,12.4,0
+61,Poliwhirl,Agua,, 1,20,0
+62,Poliwrath,Agua,Lucha,1.3,54,0
+63,Abra,Psíquico,,0.9,19.5,0
+64,Kadabra,Psíquico,,1.3,56.5,0
+65,Alakazam,Psíquico,,1.5,48,0
+66,Machop,luchando,,0.8,19.5,0
+67,Machoke,luchando,,1.5,70.5,0
+68,Machamp,luchando,,1.6,130,0
+69, Bellspr fuera,Hierba,Veneno,0.7,4,0
+70,Weepinbell,Hierba,Veneno,1,6.4,0
+71,Victreebel,Hierba,Veneno,1.7,15.5,0
+72,Tentacool,Agua,Veneno,0.9,45.5,0
+73,Tentacruel,Agua,Veneno,1.6,55,0
+74,Geodude,Roca,Tierra,0.4,20,0
+75,Graveler,Roca,Tierra,1,105,0
+76,G olem,Roca,Tierra,1.4,300,0
+77,Ponyta,Fuego,,1,30,0
+78,Rapidash,Fuego,,1.7,95,0
+79,Slowpoke,Agua,Psíquico,1.2,36,0
+80,Slowbro,Agua,Psíquico,1.6,78.5,0
+81,Magnemite,Eléctrico,Acero,0.3,6,0
+82,Magneton,Eléctrico,Acero,1,60,0
+83,Farfetch'd,Normal ,Volador,0.8,15,0
+84,Doduo,Normal,Volador,1.4,39.2,0
+85,Dodrio,Normal,Volador,1.8,85.2,0
+86,Seel,Agua,,1.1,90,0
+87,Dewgong,Agua,Hielo,1.7,120,0
+88,Grimer,Veneno,,0.9,30,0
+89,Muk,Veneno,,1.2,30,0
+90,Shellder,Agua,,0.3,4,0
+91,Cloyster,Agua,I ce,1.5,132.5,0
+92,Gastly,Fantasma,Veneno,1.3,0.1,0
+93,Haunter,Fantasma,Veneno,1.6,0.1,0
+94,Gengar,Fantasma,Veneno,1.5,40.5,0
+95,Onix,Roca,Tierra,8.8,210,0
+96,Drowzee,Psíquico,,1,32.4,0
+97,Hipno,Psíquico,,1.6,75.6,0
+98,Krabby,Agua,,0.4,6.5,0
+99,Kin gler,Agua,,1.3,60,0
+100,Voltorb,Eléctrico,,0.5,10.4,0
+101,Electrodo,Eléctrico,,1.2,66.6,0
+102,Exeggcute,Planta,Psíquico,0.4,2.5,0
+103,Exeggutor,Planta,Psíquico,2,120,0
+104,Cubone,Tierra,,0.4,6.5,0
+105,Marowak,Tierra,,1,45,0
+106,Hitmonlee,Lucha ng,,1.5,49.8,0
+107,Hitmonchan,Lucha,,1.4,50.2,0
+108,Lickitung,Normal,,1.2,65.5,0
+109,Koffing,Veneno,,0.6,1,0
+110,Weezing,Veneno,,1.2,9.5,0
+111,Rhyhorn,Tierra,Roca,1,115,0
+112,Rhydon,Tierra,Roca,1.9,120,0
+113,Chansey,Normal,,1.1,34.6,0
+114,Tangela,Hierba,,1,35,0
+115,Kangaskhan,Normal,,2.2,80,0
+116,Horsea,Agua,,0.4,8,0
+117,Seadra,Agua,,1.2,25,0
+118,Goldeen,Agua,,0.6,15,0
+119,Seaking,Agua,,1.3,39,0
+120,Staryu,Agua,,0.8,34.5,0
+121,Starmie,Agua,Psíquico,1.1,80,0
+122,Sr. Mimo, psíquico, hada, 1.3,54.5,0
+123,Scyther,Insecto,Volador,1.5,56,0
+124,Jynx,Hielo,Psíquico,1.4,40.6,0
+125,Electabuzz,Eléctrico,,1.1,30,0
+126,Magmar,Fuego,,1.3,44.5,0
+127,Pinsir,Insecto,,1.5,55,0
+128,Tauro,Normal,,1.4,88.4,0
+129,Magikarp,Wa ter,,0.9,10,0 
+130,Gyarados,Agua,Volador,6.5,235,0 
+131,Lapras,Agua,Hielo,2.5,220,0 
+132,Ditto,Normal,,0.3,4,0 
+133,Eevee,Normal,,0.3,6.5,0 
+134,Vaporeon,Agua,,1,29,0 
+135,Jolteon,Eléctrico,,0.8,24.5,0 
+136,Flareon,Fuego,,0.9,25,0 
+137, Porygon,Normal,,0.8,36.5,0
+138,Omanyte,Roca,Agua,0.4,7.5,0
+139,Omastar,Roca,Agua,1,35,0
+140,Kabuto,Roca,Agua,0.5,11.5,0
+141,Kabutops,Roca,Agua,1.3,40.5,0
+142,Aerodactyl,Roca,Volador,1.8,59,0
+143,Snorlax,Normal,,2.1,460,0
+14 4, Articuno, Hielo, Volador, 1.7, 55.4, 1
+145, Zapdos, Eléctrico, Volador, 1.6, 52.6, 1
+146, Moltres, Fuego, Volador, 2, 60, 1
+147, Dratini, Dragón, 1.8, 3.3, 0
+148, Dragonair, Dragón, 4, 16.5, 0
+149, Dragonite, Dragón, Volador, 2.2, 210, 0
+150, Mewtwo, Psíquico, 2, 122, 1
