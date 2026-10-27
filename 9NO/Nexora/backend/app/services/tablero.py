@@ -10,6 +10,7 @@ from app.models.entities import (
     CategoriaServicio,
     Cotizacion,
     DispositivoEsp32,
+    HistorialServicio,
     Participacion,
     PerfilCliente,
     PerfilProveedor,
@@ -37,14 +38,8 @@ from app.schemas.tablero import (
     TableroAdminOut,
     VigilanciaPerfilItem,
 )
-
-
-def _asegurar_utc(fecha: datetime | None, respaldo: datetime) -> datetime:
-    if fecha is None:
-        return respaldo
-    if fecha.tzinfo is None:
-        return fecha.replace(tzinfo=UTC)
-    return fecha.astimezone(UTC)
+from app.services.tablero_inicio import asegurar_utc as _asegurar_utc
+from app.services.tablero_inicio import construir_inicio_admin
 
 
 async def obtener_tablero_admin(session: AsyncSession) -> TableroAdminOut:
@@ -63,6 +58,7 @@ async def obtener_tablero_admin(session: AsyncSession) -> TableroAdminOut:
     calificaciones = list((await session.exec(select(Calificacion))).all())
     sanciones = list((await session.exec(select(Sancion))).all())
     dispositivos = list((await session.exec(select(DispositivoEsp32))).all())
+    historiales = list((await session.exec(select(HistorialServicio))).all())
 
     usuario_por_cliente: dict[UUID, Usuario] = {}
     usuarios_por_proveedor: dict[UUID, list[Usuario]] = {}
@@ -484,4 +480,18 @@ async def obtener_tablero_admin(session: AsyncSession) -> TableroAdminOut:
         servicios_activos=servicios_items[:8],
         cobertura_categorias=cobertura_categorias,
         padron_reciente=padron[:8],
+        inicio=construir_inicio_admin(
+            ahora=ahora,
+            clientes=clientes,
+            proveedores=proveedores,
+            solicitudes=solicitudes,
+            participaciones=participaciones,
+            cotizaciones=cotizaciones,
+            servicios=servicios,
+            historiales=historiales,
+            calificaciones=calificaciones,
+            sanciones=sanciones,
+            categorias=categorias,
+            cuentas_en_baja=cuentas_en_baja,
+        ),
     )

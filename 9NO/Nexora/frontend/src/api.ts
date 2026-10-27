@@ -178,6 +178,65 @@ export type PadronRecienteItem = {
   creado_en: string | null;
 };
 
+export type SerieComision = {
+  total: number;
+  base: number;
+  cierres: number;
+  serie: number[];
+  etiquetas: string[];
+};
+
+export type CategoriaInicio = {
+  nombre: string;
+  solicitudes_abiertas: number;
+  comision: SerieComision;
+};
+
+export type SerieAltas = {
+  total: number;
+  meta: string;
+  serie: number[];
+  etiquetas: string[];
+};
+
+export type MixAltas = {
+  nombre: string;
+  altas: number;
+  crecimiento: SerieAltas;
+};
+
+export type InicioAdmin = {
+  nuevas_24h: number;
+  en_proceso: number;
+  rechazadas_7d: number;
+  porcentaje_con_cotizacion: number | null;
+  categorias: CategoriaInicio[];
+  comision: SerieComision;
+  cotizaciones_total: number;
+  cotizaciones_aceptadas: number;
+  cotizaciones_rechazadas: number;
+  promedio_cotizaciones: number;
+  solicitudes_sobre_promedio: number;
+  plazos_hasta_6h: number;
+  plazos_6_a_12h: number;
+  plazos_12_a_24h: number;
+  plazos_vencidas: number;
+  clientes: number;
+  proveedores: number;
+  altas_30d: number;
+  en_baja: number;
+  crecimiento: SerieAltas;
+  mix: MixAltas[];
+  bloqueados: number;
+  en_riesgo: number;
+  marcas_30d: number;
+  reincidentes_24h: number;
+  promedio_calificacion: number | null;
+  sin_calificar: number;
+  calificaciones_menores_2: number;
+  calificaciones_mayores_45: number;
+};
+
 export type TableroAdminOut = {
   kpis: KpisTableroAdmin;
   vigilancia: VigilanciaPerfilItem[];
@@ -185,6 +244,7 @@ export type TableroAdminOut = {
   servicios_activos: ServicioActivoItem[];
   cobertura_categorias: CoberturaCategoriaItem[];
   padron_reciente: PadronRecienteItem[];
+  inicio: InicioAdmin;
 };
 
 export function obtenerTableroAdmin() {

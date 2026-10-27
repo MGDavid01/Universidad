@@ -14,6 +14,7 @@ import {
   LuStar,
   LuUserPlus,
   LuUsers,
+  LuWallet,
   LuWrench,
 } from "react-icons/lu";
 import type { Usuario } from "./api";
@@ -334,6 +335,20 @@ const administrador: Herramienta[] = [
       {
         titulo: "Bloqueos",
         texto: "Perfiles con tres marcas distintas. El desbloqueo lo haces tú.",
+      },
+    ],
+  },
+  {
+    to: "/admin/ingresos",
+    etiqueta: "Ingresos",
+    icono: LuWallet,
+    resumen: "Comisión simulada de servicios cerrados.",
+    texto: "Comisión simulada sobre el costo de la cotización de cada servicio cerrado, con la escala de 5 % a 9 %. No hay cobro ni pasarela. El inicio muestra los últimos 30 días.",
+    lugares: ["administrador"],
+    secciones: [
+      {
+        titulo: "Servicios cerrados",
+        texto: "Solo un servicio cerrado suma comisión. Uno cancelado o todavía abierto no entra.",
       },
     ],
   },

@@ -98,6 +98,67 @@ class PadronRecienteItem(BaseModel):
     creado_en: datetime | None
 
 
+class SerieComisionOut(BaseModel):
+    total: float
+    base: float
+    cierres: int
+    serie: list[float]
+    etiquetas: list[str]
+
+
+class CategoriaInicioOut(BaseModel):
+    nombre: str
+    solicitudes_abiertas: int
+    comision: SerieComisionOut
+
+
+class SerieAltasOut(BaseModel):
+    total: int
+    meta: str
+    serie: list[int]
+    etiquetas: list[str]
+
+
+class MixAltasOut(BaseModel):
+    nombre: str
+    altas: int
+    crecimiento: SerieAltasOut
+
+
+class InicioAdminOut(BaseModel):
+    """Cifras del inicio prototipo: solicitudes, comisión simulada y padrón."""
+
+    nuevas_24h: int
+    en_proceso: int
+    rechazadas_7d: int
+    porcentaje_con_cotizacion: int | None
+    categorias: list[CategoriaInicioOut]
+    comision: SerieComisionOut
+    cotizaciones_total: int
+    cotizaciones_aceptadas: int
+    cotizaciones_rechazadas: int
+    promedio_cotizaciones: float
+    solicitudes_sobre_promedio: int
+    plazos_hasta_6h: int
+    plazos_6_a_12h: int
+    plazos_12_a_24h: int
+    plazos_vencidas: int
+    clientes: int
+    proveedores: int
+    altas_30d: int
+    en_baja: int
+    crecimiento: SerieAltasOut
+    mix: list[MixAltasOut]
+    bloqueados: int
+    en_riesgo: int
+    marcas_30d: int
+    reincidentes_24h: int
+    promedio_calificacion: float | None
+    sin_calificar: int
+    calificaciones_menores_2: int
+    calificaciones_mayores_45: int
+
+
 class TableroAdminOut(BaseModel):
     kpis: KpisTableroAdmin
     vigilancia: list[VigilanciaPerfilItem]
@@ -105,3 +166,4 @@ class TableroAdminOut(BaseModel):
     servicios_activos: list[ServicioActivoItem]
     cobertura_categorias: list[CoberturaCategoriaItem]
     padron_reciente: list[PadronRecienteItem]
+    inicio: InicioAdminOut

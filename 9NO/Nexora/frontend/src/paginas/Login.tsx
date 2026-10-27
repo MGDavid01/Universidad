@@ -3,11 +3,14 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { BotonTema } from "../BotonTema";
 import { useSesion } from "../sesion";
 
+const correoInicial = import.meta.env.DEV ? "admin@example.com" : "";
+const contrasenaInicial = import.meta.env.DEV ? "AdminNexora1" : "";
+
 export function Login() {
   const { usuario, entrar } = useSesion();
   const navigate = useNavigate();
-  const [correo, setCorreo] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [correo, setCorreo] = useState(correoInicial);
+  const [contrasena, setContrasena] = useState(contrasenaInicial);
   const [error, setError] = useState("");
   const [enviando, setEnviando] = useState(false);
 
