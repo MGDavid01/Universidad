@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+    Bank list
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'core:create_bank' %}" class="btn btn-outline theme-success w-100 mb-3">Create</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>STATUS</th>
+                <th></th>
+                <th>ACTIONS</th>
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for bank in banks %}
+                <tr>
+                    <td>{{ bank.id }}</td>
+                    <td>{{ bank.name }}</td>
+                    <td>{{ bank.status }}</td>
+                    <td>
+                        <a href="{% url 'core:detail_bank' bank.id %}" class="btn btn-outline theme-primary">Detail</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'core:update_bank' bank.id %}" class="btn btn-outline theme-warning">Update</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'core:delete_bank' bank.id %}" class="btn btn-outline theme-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
