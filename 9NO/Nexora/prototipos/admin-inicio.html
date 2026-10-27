@@ -603,6 +603,36 @@
         font-size: 0.8rem;
       }
 
+      .card-cab-crecimiento {
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .card-cab-crecimiento h2 {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .crecimiento-resumen {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .crecimiento-resumen .comision-total {
+        margin: 0;
+        font-size: 1.35rem;
+        line-height: 1;
+      }
+
+      .crecimiento-resumen .comision-meta {
+        margin: 0.2rem 0 0;
+        font-size: 0.72rem;
+        max-width: 14rem;
+      }
+
       .chart-line {
         width: 100%;
         height: 140px;
@@ -1166,11 +1196,13 @@
 
             <div class="fila-arriba">
               <section class="card card-comision" aria-labelledby="titulo-crecimiento">
-                <div class="card-cab">
+                <div class="card-cab card-cab-crecimiento">
                   <h2 id="titulo-crecimiento">Crecimiento en la plataforma</h2>
+                  <div class="crecimiento-resumen">
+                    <p class="comision-total" id="crecimiento-total">—</p>
+                    <p class="comision-meta" id="crecimiento-meta">Altas de perfiles · últimos 30 días</p>
+                  </div>
                 </div>
-                <p class="comision-total" id="crecimiento-total">—</p>
-                <p class="comision-meta" id="crecimiento-meta">Altas de perfiles · últimos 30 días</p>
                 <svg class="chart-line" id="chart-crecimiento" viewBox="0 0 320 140" preserveAspectRatio="none" role="img" aria-label="Crecimiento de usuarios"></svg>
                 <div class="chart-labels" id="chart-crecimiento-labels"></div>
               </section>
