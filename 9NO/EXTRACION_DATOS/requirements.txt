@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿anyio==4.15.1
 argon2-cffi==25.1.0
 argon2-cffi-bindings==26.1.0
@@ -103,3 +104,12 @@ webcolors==25.10.0
 webencodings==0.6.1
 websocket-client==1.9.2
 widgetsnbextension==4.0.16
+=======
+pandas
+numpy
+seaborn
+matplotlib
+plotly
+scikit-learn
+ipykernel
+>>>>>>> 2de88d138c61646af201c7b03fcd646ca2ad7ea9
