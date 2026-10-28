@@ -168,21 +168,17 @@ Sí. Quienes sobrevivieron pagaron, en promedio y mediana, **tarifas más altas*
 
 ## ¿Qué cambios faltan por realizar?
 
-1. Codificar `embarked` (one-hot o labels) para ML
-2. Ingeniería de características: `family_size`, `is_alone`, título desde `name`
-3. Escalar/normalizar `age` y `fare`
-4. Tratar outliers de `fare` (winsorización o log)
-5. Eliminar `name` si el objetivo es modelado predictivo
-6. Imputar `age` por clase y sexo (en lugar de mediana global)
+Todavía quedan pasos útiles si se quiere pasar de este análisis exploratorio a un modelo predictivo. Por ejemplo, el puerto de embarque (`embarked`) debería convertirse a un formato numérico que los algoritmos puedan usar. También conviene crear variables nuevas a partir de lo que ya tenemos: el tamaño de la familia, si el pasajero viajaba solo y el título social que aparece en el nombre (Mr, Mrs, Miss, etc.), ya que aportan contexto que el dataset crudo no muestra de forma directa.
+
+Además, la edad y la tarifa deberían llevarse a una escala comparable para que ninguna de las dos domine al modelo por el solo hecho de tener números más grandes. En el caso de la tarifa, vale la pena suavizar los valores extremos (muy altos o atípicos) para que no distorsionen el aprendizaje. Si el objetivo es predecir supervivencia, el nombre completo ya no aporta tanto y se puede dejar fuera. Por último, la edad faltante se imputó con una mediana global; una mejora sería estimar esa edad según la clase y el sexo del pasajero, que suelen reflejar mejor la realidad del viaje.
 
 ---
 
 ## Conclusiones
 
-- Se aplicó ETL/EDA siguiendo CRISP-DM (Business Understanding, Data Understanding, Data Preparation).
-- Se excluyeron columnas con exceso de nulos o irrelevancia (`body`, `cabin`, `boat`, `home.dest`, `ticket`).
-- El dataset limpio tiene 9 columnas, `sex` numérico e imputación sin nulos.
-- Factores más asociados a supervivencia: **ser mujer**, **1ª/2ª clase**, **familia pequeña** y **tarifas más altas**.
+En esta práctica se revisó y preparó el dataset del Titanic siguiendo una lógica de entendimiento del problema, exploración de los datos y limpieza previa al modelado. Se descartaron columnas con demasiados vacíos o poca utilidad para el análisis (como el número de cabina, el bote, el cuerpo o el destino final) y se dejó un conjunto más manejable, con el sexo ya en formato numérico y sin valores nulos pendientes.
+
+Lo que más se asocia a haber sobrevivido es ser mujer, viajar en primera o segunda clase, ir con una familia pequeña y haber pagado tarifas más altas. En conjunto, el trabajo deja el dataset listo para un análisis más profundo o para entrenar un modelo en una siguiente etapa.
 
 ---
 
